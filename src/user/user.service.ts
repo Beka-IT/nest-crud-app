@@ -24,7 +24,6 @@ export class UserService {
   async createUser(createUserDto: CreateUserDto): Promise<User> {
     const user: User = new User();
     user.name = createUserDto.name;
-    user.age = createUserDto.age;
     user.email = createUserDto.email;
     user.username = createUserDto.username;
     user.password = await hash(createUserDto.password);
@@ -49,6 +48,10 @@ export class UserService {
     return this.userRepository.findOneBy({ id });
   }
 
+  async findByUsername(username: string): Promise<User | null> {
+    return await this.userRepository.findOne({ where: { username } });
+  }
+
   /**
    * this function is used to updated specific user whose id is passed in
    * parameter along with passed updated data
@@ -59,7 +62,6 @@ export class UserService {
   updateUser(id: number, updateUserDto: UpdateUserDto): Promise<User> {
     const user: User = new User();
     user.name = updateUserDto.name;
-    user.age = updateUserDto.age;
     user.email = updateUserDto.email;
     user.username = updateUserDto.username;
     user.password = updateUserDto.password;
