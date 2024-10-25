@@ -3,7 +3,7 @@ import { DataSourceOptions } from 'typeorm';
 
 export const dataSourceOptions : DataSourceOptions  ={
   type: 'postgres',
-  host: '10.145.90.27',  // Укажите хост
+  host: '',  // Укажите хост
   port: 5432,
   username: 'postgres',
   password: 'postgres',
